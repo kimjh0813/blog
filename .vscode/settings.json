@@ -1,0 +1,6 @@
+{
+  "createComponent": {
+    "useTypeFile": true,
+    "includeComponentName": false
+  }
+}
