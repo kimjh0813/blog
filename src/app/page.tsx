@@ -1,3 +1,7 @@
-export default function Home() {
-  return <main>home</main>;
+import { getPosts } from '@/util/getPost';
+
+export default async function Home() {
+  const posts = await getPosts();
+
+  return <main></main>;
 }
