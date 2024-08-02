@@ -1,10 +1,8 @@
-import Input from '@/components/Input';
+import { Input } from '@/components';
 
 import Link from 'next/link';
 
-import * as T from './type';
-
-const Header = ({ postsTitle }: T.HeaderProps) => {
+export function Header() {
   return (
     <header className='flex h-[70px] w-full items-center justify-between'>
       <Link href={'/'} className='text-[20px] font-bold'>
@@ -14,10 +12,8 @@ const Header = ({ postsTitle }: T.HeaderProps) => {
         <Link href={'/posts'} className='text-[20px] font-bold'>
           Posts
         </Link>
-        <Input postsTitle={postsTitle} />
+        <Input />
       </div>
     </header>
   );
-};
-
-export default Header;
+}

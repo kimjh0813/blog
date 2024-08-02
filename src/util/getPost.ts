@@ -1,15 +1,11 @@
+import { MdxMetaData, PostsData } from '@/types';
+
 import fs from 'fs/promises';
 import matter from 'gray-matter';
 
-interface MdxMetadata {
-  title: string;
-  category: string;
-  updatedAt: string;
-}
-
-export const getPostsTitle = async () => {
+export const getPosts = async () => {
   try {
-    const postsTitle = [];
+    const postsData: PostsData[] = [];
 
     const posts = await fs.readdir('./src/post', 'utf-8');
 
@@ -21,21 +17,32 @@ export const getPostsTitle = async () => {
       throw new Error('No file found');
     }
 
+    const categorySet = new Set<string>();
+
     for (const fileName of filesName) {
       const post = await fs.readFile(`./src/post/${fileName}`, 'utf-8');
 
-      const { data } = matter(post);
+      const { data, content } = matter(post);
 
-      const mdxMetadata: MdxMetadata = {
+      categorySet.add(data.category);
+
+      const mdxMetaData: MdxMetaData = {
         title: data.title,
         category: data.category,
         updatedAt: data.updatedAt,
+        path: data.path,
       };
 
-      postsTitle.push(mdxMetadata.title);
+      postsData.push({
+        body: {
+          content,
+          stringValue: content.replace(/<[^>]*>/g, ''),
+        },
+        metaData: mdxMetaData,
+      });
     }
 
-    return postsTitle;
+    return { postsData, categories: Array.from(categorySet) };
   } catch (error: any) {
     throw error;
   }

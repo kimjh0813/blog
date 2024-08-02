@@ -1,7 +1,8 @@
-import { getPostsTitle } from '@/util/getPost';
+import { getPosts } from '@/util/getPost';
 
-import Header from '@/components/Header';
+import { Header } from '@/components';
 
+import { PostsProvider } from '@/context';
 import type { Metadata } from 'next';
 
 import './globals.css';
@@ -12,17 +13,19 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const postsTitle = await getPostsTitle();
+  const posts = await getPosts();
 
   return (
-    <html lang='en'>
+    <html lang='en' className='overflow-y-scroll'>
       <body>
-        <div className='flex w-full min-h-screen px-4 justify-center overflow-auto'>
-          <div className='max-w-[720px] w-full flex flex-col'>
-            <Header postsTitle={postsTitle} />
-            {children}
+        <PostsProvider posts={posts}>
+          <div className='flex w-full min-h-screen px-4 justify-center overflow-auto'>
+            <div className='max-w-[720px] w-full flex flex-col'>
+              <Header />
+              {children}
+            </div>
           </div>
-        </div>
+        </PostsProvider>
       </body>
     </html>
   );

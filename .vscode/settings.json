@@ -1,6 +1,8 @@
 {
   "createComponent": {
     "useTypeFile": true,
-    "includeComponentName": false
+    "useStyleFile": false,
+    "useDefaultExport": false,
+    "useArrowFunction": false
   }
 }
