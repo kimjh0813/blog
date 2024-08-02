@@ -1,7 +1,9 @@
-import { getPosts } from '@/util/getPost';
+import { PostList } from '@/components';
 
-export default async function Home() {
-  const posts = await getPosts();
-
-  return <main></main>;
+export default function Home() {
+  return (
+    <div>
+      <PostList />
+    </div>
+  );
 }
