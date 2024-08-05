@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from 'react';
 
+import { PostsData } from '@/types';
+
 import { usePostsContext } from '@/context';
 import dayjs from 'dayjs';
 import Link from 'next/link';
@@ -12,19 +14,22 @@ export function PostList({ isPostPage = false }: PostListProps) {
   const { postsData, categories } = usePostsContext();
 
   const [category, setCategory] = useState<string>('All');
+  const [isShowMore, setIsShowMore] = useState<boolean>(isPostPage);
 
   const categoryList = useMemo(() => {
     return ['All', ...categories];
   }, [categories]);
 
   const filterPostsData = useMemo(() => {
-    if (category === 'All') return postsData;
+    const result: PostsData[] = postsData.filter(
+      postData => postData.metaData.category === category || category === 'All',
+    );
 
-    return postsData.filter(v => v.metaData.category === category);
-  }, [postsData, category]);
+    return { PostsData: isShowMore ? result : result.slice(0, 4), length: result.length };
+  }, [postsData, isShowMore, category]);
 
   return (
-    <div>
+    <div className='py-4'>
       {isPostPage && (
         <div className='flex flex-col items-center gap-4 py-8'>
           <div className='text-3xl border-b-[3px] pb-2 border-black font-bold'>{category}</div>
@@ -46,7 +51,7 @@ export function PostList({ isPostPage = false }: PostListProps) {
         })}
       </div>
       <div className='w-full flex flex-col gap-4'>
-        {filterPostsData.map(({ body, metaData }, index) => {
+        {filterPostsData.PostsData.map(({ body, metaData }, index) => {
           return (
             <Link
               href={metaData.path}
@@ -65,6 +70,17 @@ export function PostList({ isPostPage = false }: PostListProps) {
             </Link>
           );
         })}
+        {!isShowMore && filterPostsData.length > 4 && (
+          <div className='mx-auto mt-2 mb-4'>
+            <div
+              className='bg-gray-200 px-4 py-2 font-bold rounded-lg cursor-pointer'
+              onClick={() => {
+                setIsShowMore(true);
+              }}>
+              MORE
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

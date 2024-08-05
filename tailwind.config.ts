@@ -8,6 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        blink: 'blink 0.9s ease-in-out infinite',
+      },
+      keyframes: {
+        blink: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
+      },
       screens: {
         xsm: '550px',
         sm: '640px',

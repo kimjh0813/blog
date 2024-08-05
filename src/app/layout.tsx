@@ -16,7 +16,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const posts = await getPosts();
 
   return (
-    <html lang='en' className='overflow-y-scroll'>
+    <html lang='ko' className='overflow-y-scroll'>
       <body>
         <PostsProvider posts={posts}>
           <div className='flex w-full min-h-screen px-4 justify-center overflow-auto'>
