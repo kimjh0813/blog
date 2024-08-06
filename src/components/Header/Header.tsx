@@ -10,7 +10,7 @@ export function Header() {
       </Link>
       <div className='flex gap-6 items-center'>
         <Link href={'/posts'} className='text-[20px] font-bold'>
-          Posts
+          posts
         </Link>
         <Input />
       </div>

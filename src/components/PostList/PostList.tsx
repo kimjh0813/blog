@@ -36,19 +36,21 @@ export function PostList({ isPostPage = false }: PostListProps) {
           <div className='text-lg'>{filterPostsData.length} posts</div>
         </div>
       )}
-      <div className='flex gap-2 whitespace-nowrap overflow-auto scrollbar-hide mb-4 justify-center'>
-        {categoryList.map((v, index) => {
-          return (
-            <div
-              key={index}
-              onClick={() => {
-                setCategory(v);
-              }}
-              className={`${category === v ? 'bg-gray-200 font-medium' : 'text-gray-600 hover:bg-gray-200'} px-4 py-1 rounded-md cursor-pointer select-none`}>
-              {v}
-            </div>
-          );
-        })}
+      <div className='flex justify-center'>
+        <div className='flex gap-2 whitespace-nowrap overflow-x-auto scrollbar-hide mb-4 '>
+          {categoryList.map((v, index) => {
+            return (
+              <div
+                key={index}
+                onClick={() => {
+                  setCategory(v);
+                }}
+                className={`${category === v ? 'bg-gray-200 font-medium' : 'text-gray-600 hover:bg-gray-200'} px-4 py-1 rounded-md cursor-pointer select-none`}>
+                {v}
+              </div>
+            );
+          })}
+        </div>
       </div>
       <div className='w-full flex flex-col gap-4'>
         {filterPostsData.PostsData.map(({ body, metaData }, index) => {
@@ -71,7 +73,7 @@ export function PostList({ isPostPage = false }: PostListProps) {
           );
         })}
         {!isShowMore && filterPostsData.length > 4 && (
-          <div className='mx-auto mt-2 mb-4'>
+          <div className='mx-auto mt-1'>
             <div
               className='bg-gray-200 px-4 py-2 font-bold rounded-lg cursor-pointer'
               onClick={() => {

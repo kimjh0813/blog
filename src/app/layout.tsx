@@ -1,6 +1,6 @@
 import { getPosts } from '@/util/getPost';
 
-import { Header } from '@/components';
+import { Footer, Header } from '@/components';
 
 import { PostsProvider } from '@/context';
 import type { Metadata } from 'next';
@@ -20,9 +20,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body>
         <PostsProvider posts={posts}>
           <div className='flex w-full min-h-screen px-4 justify-center overflow-auto'>
-            <div className='max-w-[720px] w-full flex flex-col'>
-              <Header />
-              {children}
+            <div className='max-w-[720px] w-full min-h-screen flex flex-col'>
+              <div className='flex-1'>
+                <Header />
+                {children}
+              </div>
+              <Footer />
             </div>
           </div>
         </PostsProvider>
