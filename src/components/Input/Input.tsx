@@ -25,7 +25,7 @@ export function Input() {
   );
 
   return (
-    <div className='relative'>
+    <div className='relative hidden sm:block'>
       <div ref={triggerRef} className='input-wrapper'>
         <input
           type='text'

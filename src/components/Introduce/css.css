@@ -1,8 +1,8 @@
 .icon-list {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   gap: 12px;
-  margin-top: 8px;
+  user-select: none;
 }
 .icon-list .icon-content {
   position: relative;
@@ -80,5 +80,5 @@
 
 .icon-list .icon-content .wrapper[data-social="mail"] .filled,
 .icon-list .icon-content .wrapper[data-social="mail"] ~ .tooltip {
-  background-color: #444;
+  background-color: #555;
 }
