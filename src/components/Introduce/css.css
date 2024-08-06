@@ -1,0 +1,84 @@
+.icon-list {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  margin-top: 8px;
+}
+.icon-list .icon-content {
+  position: relative;
+  border-radius: 50%;
+}
+
+.icon-list .icon-content .tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.icon-list .icon-content:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  top: -40px;
+}
+.icon-list .icon-content .wrapper {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #4d4d4d;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.icon-list .icon-content .wrapper:hover {
+  box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+}
+
+.icon-list .icon-content .wrapper svg {
+  position: relative;
+  z-index: 1;
+}
+
+.icon-list .icon-content .wrapper:hover {
+  color: white;
+}
+.icon-list .icon-content .wrapper .filled {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #000;
+  transition: all 0.3s ease-in-out;
+}
+.icon-list .icon-content .wrapper:hover .filled {
+  height: 100%;
+}
+
+.icon-list .icon-content .wrapper[data-social="github"] .filled,
+.icon-list .icon-content .wrapper[data-social="github"] ~ .tooltip {
+  background-color: #24262a;
+}
+
+.icon-list .icon-content .wrapper[data-social="linkedin"] .filled,
+.icon-list .icon-content .wrapper[data-social="linkedin"] ~ .tooltip {
+  background-color: #0274b3;
+}
+
+.icon-list .icon-content .wrapper[data-social="mail"] .filled,
+.icon-list .icon-content .wrapper[data-social="mail"] ~ .tooltip {
+  background-color: #444;
+}
