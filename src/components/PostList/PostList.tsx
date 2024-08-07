@@ -45,7 +45,9 @@ export function PostList({ isPostPage = false }: PostListProps) {
                 onClick={() => {
                   setCategory(v);
                 }}
-                className={`${category === v ? 'bg-gray-200 font-medium' : 'text-gray-600 hover:bg-gray-200'} px-4 py-1 rounded-md cursor-pointer select-none`}>
+                className={`${
+                  category === v ? 'bg-gray-200 font-medium' : 'text-gray-600 hover:bg-gray-200'
+                } px-4 py-1 rounded-md cursor-pointer select-none`}>
                 {v}
               </div>
             );
