@@ -12,8 +12,8 @@ dependencies:
     specifier: ^3.0.1
     version: 3.0.1(@types/react@18.0.0)(react@18.0.0)
   '@next/mdx':
-    specifier: ^14.2.5
-    version: 14.2.5(@mdx-js/loader@3.0.1)(@mdx-js/react@3.0.1)
+    specifier: 14.0.4
+    version: 14.0.4(@mdx-js/loader@3.0.1)(@mdx-js/react@3.0.1)
   '@svgr/webpack':
     specifier: ^8.1.0
     version: 8.1.0(typescript@5.0.2)
@@ -1737,8 +1737,8 @@ packages:
       glob: 7.1.7
     dev: true
 
-  /@next/mdx@14.2.5(@mdx-js/loader@3.0.1)(@mdx-js/react@3.0.1):
-    resolution: {integrity: sha512-AROhSdXQg0/jt55iqxVSJqp9oaCyXwRe44/I17c77gDshZ6ex7VKBZDH0GljaxZ0Y4mScYUbFJJEh42Xw4X4Dg==}
+  /@next/mdx@14.0.4(@mdx-js/loader@3.0.1)(@mdx-js/react@3.0.1):
+    resolution: {integrity: sha512-w0b+A2LRdlqqTIzmaeqPOaafid2cYYYjETA+G+3ZFwkNbBQjvZp57P1waOexF3MGHzcCEoXEnhYpAc+FO6S0Rg==}
     peerDependencies:
       '@mdx-js/loader': '>=0.15.0'
       '@mdx-js/react': '>=0.15.0'
