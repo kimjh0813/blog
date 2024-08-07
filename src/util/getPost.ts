@@ -2,6 +2,7 @@ import { MdxMetaData, PostsData } from '@/types';
 
 import fs from 'fs/promises';
 import matter from 'gray-matter';
+import { serialize } from 'next-mdx-remote/serialize';
 
 export const getPosts = async () => {
   try {
@@ -43,6 +44,38 @@ export const getPosts = async () => {
     }
 
     return { postsData, categories: Array.from(categorySet) };
+  } catch (error: any) {
+    throw error;
+  }
+};
+
+export const getPost = async (path: string) => {
+  const filePath = `./src/post/${path}.mdx`;
+
+  try {
+    const post = await fs.readFile(filePath, 'utf-8');
+
+    if (!post) {
+      throw new Error('No file found');
+    }
+
+    const { data, content } = matter(post);
+
+    const mdxSource = await serialize(content, {
+      mdxOptions: { development: false },
+    });
+
+    const mdxMetaData: MdxMetaData = {
+      title: data.title,
+      category: data.category,
+      updatedAt: data.updatedAt,
+      path: data.path,
+    };
+
+    return {
+      source: mdxSource,
+      metaData: mdxMetaData,
+    };
   } catch (error: any) {
     throw error;
   }
