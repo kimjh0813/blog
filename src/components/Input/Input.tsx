@@ -47,7 +47,13 @@ export function Input() {
             <>
               {filteredPosts.map(({ metaData }, index) => {
                 return (
-                  <Link key={index} href={metaData.path}>
+                  <Link
+                    key={index}
+                    href={`/blog/${metaData.path}`}
+                    onClick={() => {
+                      setIsVisible(false);
+                      setInputValue('');
+                    }}>
                     <div className='px-2 py-1 hover:bg-gray-100 cursor-pointer'>
                       {metaData.title}
                     </div>

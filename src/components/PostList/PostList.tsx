@@ -56,7 +56,7 @@ export function PostList({ isPostPage = false }: PostListProps) {
         {filterPostsData.PostsData.map(({ body, metaData }, index) => {
           return (
             <Link
-              href={metaData.path}
+              href={`/blog/${metaData.path}`}
               key={index}
               className='border border-gray-300 p-4 rounded-md group'>
               <div className='text-lg mb-[3px] font-medium group-hover:underline underline-offset-2'>
