@@ -12,14 +12,14 @@ import { SuccessMessage } from '../SuccessMessage';
 import './css.css';
 
 const introduceMessages = [
-  '테스트 메시지',
-  '안녕하세요',
-  'hello, world',
-  '메시지 감사합니다',
-  '반갑습니다',
+  '문제 해결을 좋아하는',
+  'UX를 최우선으로 생각하는',
+  '운동을 좋아하는',
+  '지속적으로 성장하는',
+  '새로운 것을 두려워하지 않는',
 ];
 
-let i = 0;
+let index = 0;
 
 export function Introduce() {
   const textStatusRef = useRef<'add' | 'minus'>('add');
@@ -40,15 +40,15 @@ export function Introduce() {
           isPausedRef.current = false;
           textStatusRef.current = 'add';
 
-          i++;
+          index++;
 
-          if (i === introduceMessages.length) i = 0;
+          if (index === introduceMessages.length) index = 0;
         }, 1500);
 
         return;
       }
 
-      const message = introduceMessages[i];
+      const message = introduceMessages[index];
 
       if (text.length === message.length && textStatusRef.current === 'add') {
         isPausedRef.current = true;
