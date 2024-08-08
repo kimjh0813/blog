@@ -52,10 +52,6 @@ export const getPosts = async () => {
 
 export const getPost = async (slug: string) => {
   try {
-    const cwd = process.cwd() + `/src/post/${slug}.mdx`;
-
-    const join = path.join(process.cwd(), `/src/post/${slug}.mdx`);
-
     const post = await fs.readFile(path.join(process.cwd(), `/src/post/${slug}.mdx`), 'utf-8');
 
     if (!post) {
@@ -78,8 +74,6 @@ export const getPost = async (slug: string) => {
     return {
       source: mdxSource,
       metaData: mdxMetaData,
-      cwd,
-      join,
     };
   } catch (error: any) {
     throw error;
