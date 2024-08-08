@@ -7,6 +7,8 @@ export default async function Blog({ params }: { params: { slug: string } }) {
 
   return (
     <div>
+      <div>join: {post.join}</div>
+      <div>cwd: {post.cwd}</div>
       <BlogContent post={post} />
     </div>
   );
