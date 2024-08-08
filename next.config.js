@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ['next-mdx-remote'],
   webpack: config => {
     config.module.rules.push({
       test: /\.svg$/,
