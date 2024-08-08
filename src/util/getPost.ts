@@ -50,13 +50,12 @@ export const getPosts = async () => {
   }
 };
 
-export const getPost = async (path1: string) => {
+export const getPost = async (slug: string) => {
   try {
-    const cwd = process.cwd() + `/post/${path1}.mdx`;
+    const cwd = process.cwd() + `/post/${slug}.mdx`;
+    const join = path.join(process.cwd(), `/post/${slug}.mdx`);
 
-    const join = path.join(process.cwd(), `/post/${path1}.mdx`);
-
-    const post = await fs.readFile(`post/${path1}.mdx`, 'utf-8');
+    const post = await fs.readFile(join, 'utf-8');
 
     if (!post) {
       throw new Error('No file found');
