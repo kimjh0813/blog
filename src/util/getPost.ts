@@ -50,10 +50,8 @@ export const getPosts = async () => {
 };
 
 export const getPost = async (path: string) => {
-  const filePath = `./src/post/${path}.mdx`;
-
   try {
-    const post = await fs.readFile(filePath, 'utf-8');
+    const post = await fs.readFile(`${process.cwd()}/src/post/${path}.mdx`, 'utf-8');
 
     if (!post) {
       throw new Error('No file found');
