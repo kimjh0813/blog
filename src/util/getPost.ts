@@ -3,6 +3,7 @@ import { MdxMetaData, PostsData } from '@/types';
 import fs from 'fs/promises';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
+import path from 'path';
 
 export const getPosts = async () => {
   try {
@@ -49,9 +50,11 @@ export const getPosts = async () => {
   }
 };
 
-export const getPost = async (path: string) => {
+export const getPost = async (path1: string) => {
   try {
-    const post = await fs.readFile(`${process.cwd()}/src/post/${path}.mdx`, 'utf-8');
+    console.log(path.join(process.cwd(), `src/post/${path1}.mdx`));
+
+    const post = await fs.readFile(path.join(process.cwd(), `src/post/${path1}.mdx`), 'utf-8');
 
     if (!post) {
       throw new Error('No file found');
@@ -75,6 +78,7 @@ export const getPost = async (path: string) => {
       metaData: mdxMetaData,
     };
   } catch (error: any) {
+    console.log('getPost error');
     throw error;
   }
 };
