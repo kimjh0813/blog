@@ -3,6 +3,7 @@ import { getPosts } from '@/util/getPost';
 import { Footer, Header } from '@/components';
 
 import { PostsProvider } from '@/context';
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 
 import './globals.css';
@@ -24,6 +25,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <div className='flex-1'>
                 <Header />
                 {children}
+                <Analytics />
               </div>
               <Footer />
             </div>
