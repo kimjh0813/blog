@@ -52,7 +52,9 @@ export const getPosts = async () => {
 
 export const getPost = async (path1: string) => {
   try {
-    console.log(path.join(process.cwd(), `src/post/${path1}.mdx`));
+    console.log(process.cwd() + `/src/post/${path1}.mdx`);
+
+    console.log(path.join(process.cwd(), `/src/post/${path1}.mdx`));
 
     const post = await fs.readFile(path.join(process.cwd(), `src/post/${path1}.mdx`), 'utf-8');
 
