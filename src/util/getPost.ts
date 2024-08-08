@@ -52,9 +52,9 @@ export const getPosts = async () => {
 
 export const getPost = async (path1: string) => {
   try {
-    console.log(process.cwd() + `/src/post/${path1}.mdx`);
+    const cwd = process.cwd() + `/src/post/${path1}.mdx`;
 
-    console.log(path.join(process.cwd(), `/src/post/${path1}.mdx`));
+    const join = path.join(process.cwd(), `/src/post/${path1}.mdx`);
 
     const post = await fs.readFile(path.join(process.cwd(), `src/post/${path1}.mdx`), 'utf-8');
 
@@ -78,6 +78,8 @@ export const getPost = async (path1: string) => {
     return {
       source: mdxSource,
       metaData: mdxMetaData,
+      cwd,
+      join,
     };
   } catch (error: any) {
     console.log('getPost error');
