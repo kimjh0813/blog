@@ -5,29 +5,7 @@ updatedAt: "2024-03-24"
 path: "react-file-dropzone-2"
 ---
 
-# next-mdx-remote
-
-A set of light utilities allowing MDX to be loaded within `getStaticProps` or `getServerSideProps` and hydrated correctly on the client.
-
----
-
-## Installation
-
-```sh
-npm install next-mdx-remote
-```
-
-If using with Turbopack, you'll need to add the following to your `next.config.js` until [this issue](https://github.com/vercel/next.js/issues/64525) is resolved:
-
-```diff
-const nextConfig = {
-+  transpilePackages: ['next-mdx-remote'],
-}
-```
-
-## Examples
-
-```jsx
+```tsx
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 
@@ -38,14 +16,18 @@ const components = { Test };
 export default function TestPage({ source }) {
   return (
     <div className="wrapper">
-      <MDXRemote {...source} components={components} />
+      <MDXRemoteadsfnaskdfaksfnksadjnflansldfjk
+        {...source}
+        components={components}
+      />
     </div>
   );
 }
 
 export async function getStaticProps() {
   // MDX text - can be from a local file, database, anywhere
-  const source = "Some **mdx** text, with a component <Test />";
+  const source =
+    "Some **mdx** text, with a component <Test /> Some **mdx** text, with a component <Test /> Some **mdx** text, with a component <Test />";
   const mdxSource = await serialize(source);
   return { props: { source: mdxSource } };
 }
