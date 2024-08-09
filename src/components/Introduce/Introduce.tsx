@@ -2,10 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import GithubIcon from '@/assets/icons/github.svg';
-import LinkedInIcon from '@/assets/icons/linkedin.svg';
-import MailIcon from '@/assets/icons/mail.svg';
-
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import MailIcon from '@mui/icons-material/Mail';
 import Link from 'next/link';
 
 import { SuccessMessage } from '../SuccessMessage';
@@ -98,7 +97,7 @@ export function Introduce() {
               data-social='github'
               className='wrapper'>
               <div className='filled' />
-              <GithubIcon />
+              <GitHubIcon style={{ fontSize: 28 }} />
             </Link>
             <div className='tooltip'>GitHub</div>
           </li>
@@ -109,7 +108,7 @@ export function Introduce() {
               data-social='linkedin'
               className='wrapper'>
               <div className='filled' />
-              <LinkedInIcon />
+              <LinkedInIcon style={{ fontSize: 30 }} />
             </Link>
             <div className='tooltip'>LinkedIn</div>
           </li>
@@ -135,7 +134,7 @@ export function Introduce() {
                 }
               }}>
               <div className='filled' />
-              <MailIcon />
+              <MailIcon style={{ fontSize: 28 }} />
             </div>
             <div className='tooltip'>Mail</div>
           </li>
