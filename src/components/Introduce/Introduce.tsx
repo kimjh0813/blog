@@ -2,24 +2,23 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import GithubIcon from '@/assets/icons/github.svg';
-import LinkedInIcon from '@/assets/icons/linkedin.svg';
-import MailIcon from '@/assets/icons/mail.svg';
-
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import MailIcon from '@mui/icons-material/Mail';
 import Link from 'next/link';
 
 import { SuccessMessage } from '../SuccessMessage';
 import './css.css';
 
 const introduceMessages = [
-  '테스트 메시지',
-  '안녕하세요',
-  'hello, world',
-  '메시지 감사합니다',
-  '반갑습니다',
+  '문제 해결을 좋아하는',
+  'UX를 최우선으로 생각하는',
+  '운동을 좋아하는',
+  '지속적으로 성장하는',
+  '새로운 것을 두려워하지 않는',
 ];
 
-let i = 0;
+let index = 0;
 
 export function Introduce() {
   const textStatusRef = useRef<'add' | 'minus'>('add');
@@ -40,15 +39,15 @@ export function Introduce() {
           isPausedRef.current = false;
           textStatusRef.current = 'add';
 
-          i++;
+          index++;
 
-          if (i === introduceMessages.length) i = 0;
+          if (index === introduceMessages.length) index = 0;
         }, 1500);
 
         return;
       }
 
-      const message = introduceMessages[i];
+      const message = introduceMessages[index];
 
       if (text.length === message.length && textStatusRef.current === 'add') {
         isPausedRef.current = true;
@@ -98,7 +97,7 @@ export function Introduce() {
               data-social='github'
               className='wrapper'>
               <div className='filled' />
-              <GithubIcon />
+              <GitHubIcon style={{ fontSize: 28 }} />
             </Link>
             <div className='tooltip'>GitHub</div>
           </li>
@@ -109,7 +108,7 @@ export function Introduce() {
               data-social='linkedin'
               className='wrapper'>
               <div className='filled' />
-              <LinkedInIcon />
+              <LinkedInIcon style={{ fontSize: 30 }} />
             </Link>
             <div className='tooltip'>LinkedIn</div>
           </li>
@@ -135,7 +134,7 @@ export function Introduce() {
                 }
               }}>
               <div className='filled' />
-              <MailIcon />
+              <MailIcon style={{ fontSize: 28 }} />
             </div>
             <div className='tooltip'>Mail</div>
           </li>

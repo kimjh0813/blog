@@ -9,7 +9,7 @@ export const getPosts = async () => {
   try {
     const postsData: PostsData[] = [];
 
-    const posts = await fs.readdir('./src/post', 'utf-8');
+    const posts = await fs.readdir('post', 'utf-8');
 
     const filesName = posts.filter(file => {
       return file.split('.').pop() === 'mdx';
@@ -22,7 +22,7 @@ export const getPosts = async () => {
     const categorySet = new Set<string>();
 
     for (const fileName of filesName) {
-      const post = await fs.readFile(`./src/post/${fileName}`, 'utf-8');
+      const post = await fs.readFile(`post/${fileName}`, 'utf-8');
 
       const { data, content } = matter(post);
 
@@ -52,7 +52,7 @@ export const getPosts = async () => {
 
 export const getPost = async (slug: string) => {
   try {
-    const post = await fs.readFile(path.join(process.cwd(), `/src/post/${slug}.mdx`), 'utf-8');
+    const post = await fs.readFile(path.join(process.cwd(), `/post/${slug}.mdx`), 'utf-8');
 
     if (!post) {
       throw new Error('No file found');
