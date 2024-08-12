@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { PostsData } from '@/types';
 
@@ -10,10 +10,10 @@ import Link from 'next/link';
 
 import { PostListProps } from './type';
 
-export function PostList({ isPostPage = false }: PostListProps) {
+export function PostList({ isPostPage = false, defaultCategory = 'All' }: PostListProps) {
   const { postsData, categories } = usePostsContext();
 
-  const [category, setCategory] = useState<string>('All');
+  const [category, setCategory] = useState<string>(defaultCategory);
   const [isShowMore, setIsShowMore] = useState<boolean>(isPostPage);
 
   const categoryList = useMemo(() => {
@@ -28,6 +28,8 @@ export function PostList({ isPostPage = false }: PostListProps) {
     return { PostsData: isShowMore ? result : result.slice(0, 4), length: result.length };
   }, [postsData, isShowMore, category]);
 
+  console.log(defaultCategory);
+
   return (
     <div className='py-4'>
       {isPostPage && (
@@ -39,7 +41,16 @@ export function PostList({ isPostPage = false }: PostListProps) {
       <div className='flex justify-center'>
         <div className='flex gap-2 whitespace-nowrap overflow-x-auto scrollbar-hide mb-4 '>
           {categoryList.map((v, index) => {
-            return (
+            return isPostPage ? (
+              <Link
+                href={v}
+                key={index}
+                className={`${
+                  category === v ? 'bg-gray-200 font-medium' : 'text-gray-600 hover:bg-gray-200'
+                } px-4 py-1 rounded-md cursor-pointer select-none`}>
+                {v}
+              </Link>
+            ) : (
               <div
                 key={index}
                 onClick={() => {

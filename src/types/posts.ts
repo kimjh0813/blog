@@ -1,4 +1,5 @@
 export interface MdxMetaData {
+  emoji: string;
   title: string;
   category: string;
   updatedAt: string;

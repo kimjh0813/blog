@@ -29,6 +29,7 @@ export const getPosts = async () => {
       categorySet.add(data.category);
 
       const mdxMetaData: MdxMetaData = {
+        emoji: data.emoji,
         title: data.title,
         category: data.category,
         updatedAt: data.updatedAt,
@@ -65,6 +66,7 @@ export const getPost = async (slug: string) => {
     });
 
     const mdxMetaData: MdxMetaData = {
+      emoji: data.emoji,
       title: data.title,
       category: data.category,
       updatedAt: data.updatedAt,
