@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { PostsData } from '@/types';
 
@@ -15,13 +15,21 @@ export function PostList({ isPostPage = false }: PostListProps) {
   const router = useRouter();
   const params = useParams();
 
+  const isMountRef = useRef<boolean>(true);
+
   const { postsData, categories } = usePostsContext();
 
   const [category, setCategory] = useState<string>();
   useEffect(() => {
     const hash = decodeURIComponent(window.location.hash.substring(1));
 
-    setCategory(hash ? hash : 'All');
+    setTimeout(
+      () => {
+        setCategory(hash ? hash : 'All');
+        isMountRef.current = false;
+      },
+      isMountRef.current ? 300 : 0,
+    );
   }, [params]);
 
   const [isShowMore, setIsShowMore] = useState<boolean>(isPostPage);
