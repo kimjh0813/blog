@@ -18,10 +18,10 @@ export function BlogContent({ post: { metaData, source } }: T.BlogContentProps) 
       <div className='mt-8 mb-12'>
         <div className='text-7xl mb-8'>{metaData.emoji}</div>
         <div className='flex gap-2 font-medium mb-2'>
-          <Link href={'/posts/All'} className='hover:underline'>
+          <Link href={'/posts'} className='hover:underline'>
             블로그
           </Link>
-          <Link href={`/posts/${metaData.category}`} className='hover:underline'>
+          <Link href={`/posts#${metaData.category}`} className='hover:underline'>
             {metaData.category}
           </Link>
         </div>
