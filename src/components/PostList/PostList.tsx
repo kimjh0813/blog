@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { PostsData } from '@/types';
 
@@ -15,21 +15,13 @@ export function PostList({ isPostPage = false }: PostListProps) {
   const router = useRouter();
   const params = useParams();
 
-  const isMountRef = useRef<boolean>(true);
-
   const { postsData, categories } = usePostsContext();
 
   const [category, setCategory] = useState<string>();
   useEffect(() => {
     const hash = decodeURIComponent(window.location.hash.substring(1));
 
-    setTimeout(
-      () => {
-        setCategory(hash ? hash : 'All');
-        isMountRef.current = false;
-      },
-      isMountRef.current ? 300 : 0,
-    );
+    setCategory(hash ? hash : 'All');
   }, [params]);
 
   const [isShowMore, setIsShowMore] = useState<boolean>(isPostPage);
@@ -47,21 +39,14 @@ export function PostList({ isPostPage = false }: PostListProps) {
     return { PostsData: isShowMore ? result : result.slice(0, 4), length: result.length };
   }, [postsData, isShowMore, category]);
 
+  if (!category) return <></>;
+
   return (
     <div className='py-4'>
       {isPostPage && (
         <div className='flex flex-col items-center gap-4 py-8'>
-          {category ? (
-            <>
-              <div className='text-3xl border-b-[3px] pb-2 border-black font-bold'>{category}</div>
-              <div className='text-lg'>{filterPostsData.length} posts</div>
-            </>
-          ) : (
-            <>
-              <div className='h-8 w-32 animate-pulse bg-[#eceef1] rounded-md' />
-              <div className='h-6 w-28 animate-pulse bg-[#eceef1] rounded-md' />
-            </>
-          )}
+          <div className='text-3xl border-b-[3px] pb-2 border-black font-bold'>{category}</div>
+          <div className='text-lg'>{filterPostsData.length} posts</div>
         </div>
       )}
       <div className='flex justify-center'>
@@ -82,7 +67,7 @@ export function PostList({ isPostPage = false }: PostListProps) {
       </div>
       <div className='w-full flex flex-col gap-4'>
         {filterPostsData.PostsData.map(({ body, metaData }, index) => {
-          return category ? (
+          return (
             <Link
               href={`/blog/${metaData.path}`}
               key={index}
@@ -98,11 +83,9 @@ export function PostList({ isPostPage = false }: PostListProps) {
                 <div className='flex'>{metaData.category}</div>
               </div>
             </Link>
-          ) : (
-            <div key={index} className='h-16 animate-pulse bg-[#eceef1] w-full rounded-md' />
           );
         })}
-        {!isShowMore && filterPostsData.length > 4 && category && (
+        {!isShowMore && filterPostsData.length > 4 && (
           <div className='mx-auto mt-1'>
             <div
               className='bg-gray-200 px-4 py-2 font-bold rounded-lg cursor-pointer'
