@@ -72,7 +72,7 @@ export function PostList({ isPostPage = false }: PostListProps) {
               href={`/blog/${metaData.path}`}
               key={index}
               className='border border-gray-300 p-4 rounded-md group'>
-              <div className='text-lg mb-[3px] font-medium group-hover:underline underline-offset-2'>
+              <div className='text-lg mb-[3px] font-medium group-hover:underline underline-offset-2 overflow-hidden text-ellipsis'>
                 {metaData.title}
               </div>
               <div className='text-sm mb-2 line-clamp-3'>{body.stringValue}</div>

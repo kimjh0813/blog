@@ -1,11 +1,13 @@
 'use client';
 
+import { Comments, PostNavigation } from '@/components';
+import { Code } from '@/components/ui';
+
 import dayjs from 'dayjs';
 import { MDXComponents } from 'mdx/types';
 import { MDXRemote } from 'next-mdx-remote';
 import Link from 'next/link';
 
-import { Code } from '../ui';
 import * as T from './type';
 
 const components: MDXComponents = {
@@ -25,11 +27,13 @@ export function BlogContent({ post: { metaData, source } }: T.BlogContentProps) 
             {metaData.category}
           </Link>
         </div>
-        <div className='text-3xl font-medium mb-1'>{metaData.title}</div>
+        <div className='text-3xl font-medium mb-1 break-all'>{metaData.title}</div>
         <div className='text-gray-400'>{dayjs(metaData.updatedAt).format('MMMM D, YYYY')}</div>
         <div className='w-full h-[1px] bg-gray-300 my-2' />
       </div>
       <MDXRemote {...source} components={components} />
+      <PostNavigation path={metaData.path} />
+      <Comments />
     </>
   );
 }
