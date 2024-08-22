@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import { SuccessMessage } from '@/components';
+
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MailIcon from '@mui/icons-material/Mail';
 import Link from 'next/link';
 
-import { SuccessMessage } from '../SuccessMessage';
 import './css.css';
 
 const introduceMessages = [

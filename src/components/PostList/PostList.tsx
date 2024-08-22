@@ -7,13 +7,23 @@ import { PostsData } from '@/types';
 import { usePostsContext } from '@/context';
 import dayjs from 'dayjs';
 import Link from 'next/link';
+import { useParams, useRouter } from 'next/navigation';
 
 import { PostListProps } from './type';
 
-export function PostList({ isPostPage = false, defaultCategory = 'All' }: PostListProps) {
+export function PostList({ isPostPage = false }: PostListProps) {
+  const router = useRouter();
+  const params = useParams();
+
   const { postsData, categories } = usePostsContext();
 
-  const [category, setCategory] = useState<string>(defaultCategory);
+  const [category, setCategory] = useState<string>();
+  useEffect(() => {
+    const hash = decodeURIComponent(window.location.hash.substring(1));
+
+    setCategory(hash ? hash : 'All');
+  }, [params]);
+
   const [isShowMore, setIsShowMore] = useState<boolean>(isPostPage);
 
   const categoryList = useMemo(() => {
@@ -22,13 +32,14 @@ export function PostList({ isPostPage = false, defaultCategory = 'All' }: PostLi
 
   const filterPostsData = useMemo(() => {
     const result: PostsData[] = postsData.filter(
-      postData => postData.metaData.category === category || category === 'All',
+      postData =>
+        postData.metaData.category === category || category === 'All' || category === undefined,
     );
 
     return { PostsData: isShowMore ? result : result.slice(0, 4), length: result.length };
   }, [postsData, isShowMore, category]);
 
-  console.log(defaultCategory);
+  if (!category) return <></>;
 
   return (
     <div className='py-4'>
@@ -41,21 +52,10 @@ export function PostList({ isPostPage = false, defaultCategory = 'All' }: PostLi
       <div className='flex justify-center'>
         <div className='flex gap-2 whitespace-nowrap overflow-x-auto scrollbar-hide mb-4 '>
           {categoryList.map((v, index) => {
-            return isPostPage ? (
-              <Link
-                href={v}
-                key={index}
-                className={`${
-                  category === v ? 'bg-gray-200 font-medium' : 'text-gray-600 hover:bg-gray-200'
-                } px-4 py-1 rounded-md cursor-pointer select-none`}>
-                {v}
-              </Link>
-            ) : (
+            return (
               <div
                 key={index}
-                onClick={() => {
-                  setCategory(v);
-                }}
+                onClick={() => router.push(`#${v}`, { scroll: false })}
                 className={`${
                   category === v ? 'bg-gray-200 font-medium' : 'text-gray-600 hover:bg-gray-200'
                 } px-4 py-1 rounded-md cursor-pointer select-none`}>
@@ -72,7 +72,7 @@ export function PostList({ isPostPage = false, defaultCategory = 'All' }: PostLi
               href={`/blog/${metaData.path}`}
               key={index}
               className='border border-gray-300 p-4 rounded-md group'>
-              <div className='text-lg mb-[3px] font-medium group-hover:underline underline-offset-2'>
+              <div className='text-lg mb-[3px] font-medium group-hover:underline underline-offset-2 overflow-hidden text-ellipsis'>
                 {metaData.title}
               </div>
               <div className='text-sm mb-2 line-clamp-3'>{body.stringValue}</div>

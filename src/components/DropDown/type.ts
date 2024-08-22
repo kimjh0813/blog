@@ -2,7 +2,7 @@ import { MutableRefObject } from 'react';
 
 interface DropDownProps {
   isVisible: boolean;
-  triggerRef: MutableRefObject<HTMLElement | null>; //trigger 요소 ref 값
+  triggerRef: MutableRefObject<HTMLElement | null>;
   onClickOutside: () => void;
   className?: string;
   position?: 'left' | 'right';

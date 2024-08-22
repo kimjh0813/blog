@@ -18,8 +18,6 @@ export function DropDown({
     if (!isVisible) return;
 
     const handleClickOutside = (e: MouseEvent) => {
-      // trigger 요소 클릭 시 리턴
-
       if (triggerRef.current && triggerRef.current.contains(e.target as Element)) return;
 
       if (ref.current && !ref.current.contains(e.target as Element)) {
