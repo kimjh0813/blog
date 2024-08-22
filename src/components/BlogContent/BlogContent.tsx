@@ -12,6 +12,10 @@ import * as T from './type';
 
 const components: MDXComponents = {
   code: ({ className, children }) => <Code className={className}>{children}</Code>,
+  Title: ({ className, children }: React.ComponentProps<'h2'>) => {
+    return <div className={`text-2xl mb-4 ${className}`}>{children}</div>;
+  },
+  p: ({ className, children }) => <div className={className}>{children}</div>,
 };
 
 export function BlogContent({ post: { metaData, source } }: T.BlogContentProps) {
