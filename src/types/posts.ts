@@ -4,6 +4,7 @@ export interface MdxMetaData {
   category: string;
   updatedAt: string;
   path: string;
+  description: string;
 }
 
 export interface PostsData {

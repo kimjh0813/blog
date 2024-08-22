@@ -34,6 +34,7 @@ export const getPosts = async () => {
         category: data.category,
         updatedAt: data.updatedAt,
         path: data.path,
+        description: data.description,
       };
 
       postsData.push({
@@ -79,6 +80,7 @@ export const getPost = async (slug: string) => {
       category: data.category,
       updatedAt: data.updatedAt,
       path: data.path,
+      description: data.description,
     };
 
     return {

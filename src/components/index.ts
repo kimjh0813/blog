@@ -6,6 +6,7 @@ export * from './Footer';
 export * from './Header';
 export * from './Input';
 export * from './Introduce';
+export * from './NextSeo';
 export * from './PostList';
 export * from './PostNavigation';
 export * from './SuccessMessage';

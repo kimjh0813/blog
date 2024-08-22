@@ -4,14 +4,8 @@ import { Footer, Header } from '@/components';
 
 import { PostsProvider } from '@/context';
 import { Analytics } from '@vercel/analytics/react';
-import type { Metadata } from 'next';
 
 import './globals.css';
-
-export const metadata: Metadata = {
-  title: 'Home',
-  description: '프론트엔드 개발자 김종훈의 블로그입니다.',
-};
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const posts = await getPosts();
