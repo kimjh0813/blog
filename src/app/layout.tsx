@@ -15,7 +15,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
         <meta
           name='google-site-verification'
-          content='4uFAUMu6ViLW3EQ3jrIkmt4_CViZ1CNRRO22PeFDLJ8'
+          content='pqraY2P6RnpMwetzvUTQWVB6qD6qSknOO53yCsSkZd4'
         />
       </head>
       <body>
