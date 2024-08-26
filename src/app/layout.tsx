@@ -12,6 +12,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang='ko' className='overflow-y-scroll'>
+      <head>
+        <meta
+          name='google-site-verification'
+          content='4uFAUMu6ViLW3EQ3jrIkmt4_CViZ1CNRRO22PeFDLJ8'
+        />
+      </head>
       <body>
         <PostsProvider posts={posts}>
           <div className='flex w-full min-h-screen px-4 justify-center overflow-auto'>
