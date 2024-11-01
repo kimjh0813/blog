@@ -1,22 +1,39 @@
 import { getPost } from '@/util/getPost';
 
-import { BlogContent, NextSeo } from '@/components';
+import { BlogContent } from '@/components';
 
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = await getPost(params.slug);
+
+  if (!post)
+    return {
+      title: params.slug,
+      description: params.slug,
+    };
+
+  const { title, description, path } = post.metaData;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      type: 'website',
+      url: `https://jonghun.vercel.app/blog/${path}`,
+    },
+  };
+}
 
 export default async function Blog({ params }: { params: { slug: string } }) {
   const post = await getPost(params.slug);
 
   if (!post) return notFound();
 
-  return (
-    <>
-      <NextSeo
-        title={post.metaData.title}
-        description={post.metaData.description}
-        path={`blog/${post.metaData.path}`}
-      />
-      <BlogContent post={post} />
-    </>
-  );
+  return <BlogContent post={post} />;
 }
