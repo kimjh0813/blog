@@ -16,6 +16,13 @@ const components: MDXComponents = {
     return <div className={`text-2xl mb-4 ${className}`}>{children}</div>;
   },
   p: ({ className, children }) => <div className={className}>{children}</div>,
+  Link: ({ ...props }: React.ComponentProps<'a'>) => {
+    return (
+      <a {...props} className='text-lime-600 hover:underline'>
+        {props.children ? props.children : props.href}
+      </a>
+    );
+  },
 };
 
 export function BlogContent({ post: { metaData, source } }: T.BlogContentProps) {
