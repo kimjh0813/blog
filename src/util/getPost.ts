@@ -33,7 +33,7 @@ export const getPosts = async () => {
         title: data.title,
         category: data.category,
         updatedAt: data.updatedAt,
-        path: data.path,
+        path: fileName,
         description: data.description,
       };
 
@@ -79,7 +79,7 @@ export const getPost = async (slug: string) => {
       title: data.title,
       category: data.category,
       updatedAt: data.updatedAt,
-      path: data.path,
+      path: slug,
       description: data.description,
     };
 

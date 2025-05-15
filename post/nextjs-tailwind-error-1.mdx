@@ -3,7 +3,6 @@ emoji: ⚙️
 title: "[Next.js] tailwind 적용 안되는 오류 (1) (with pnpm + turbopack)"
 category: "Next.js"
 updatedAt: "2024-11-01"
-path: "nextjs-tailwind-error-1"
 description: "Next.js tailwind + pnpm 환경에서 turbopack 사용시 tailwind 적용 안됨"
 ---
 
@@ -23,7 +22,7 @@ Turbopack for Next Dev: Yes <br />
 Customize Import Alias: Yes <br />
 
 <br />
-위와 같은 설정으로 create next app을 하게 되면 package.json 파일에 scripts 가 이런식으로 생성됩니다.
+위와 같은 설정으로 Next.js 프로젝트를 생성하게 되면 package.json 파일에 다음과 같은 scripts가 생성됩니다.
 ```json
 "scripts": {
   "dev": "next dev --turbopack",
@@ -38,18 +37,21 @@ Next.js 에서 turbopack 이란 간단하게 로컬 개발환경에서 속도를
 자세한 설명은 Next.js 공식문서를 참고해주세요.
 
 <br />
-위와 같은 옵션으로 create next app 이후 npm install => **next dev --turbopack** 화면입니다.
+위와 같은 옵션으로 Next.js 프로젝트 생성 이후 npm install => **next dev --turbopack**
+화면입니다.
 
 <img src={"/images/nextjs-npm-tailwind.png"} />
 
-yarn도 마찬가지로 npm과 동일한 결과를 보여줍니다.
+yarn도 마찬가지로 npm과 동일하게 문제없는 결과를 보여줍니다.
 
 <br />
 저는 pnpm을 주로 사용하는데 pnpm install => **next dev --turbopack** 에서는 tailwind가
 적용되지 않는 아래와 같은 화면이 나타났습니다.
 <img src={"/images/nextjs-pnpm-tailwind.png"} />
+
 처음에는 turbopack의 문제인지도 모르고 여러가지 시도를 해봤는데 tailwind를 적용하지
 못했습니다.
+
 <br />
 
 <Title>문제 발견</Title>
@@ -60,7 +62,8 @@ yarn도 마찬가지로 npm과 동일한 결과를 보여줍니다.
 
 <br />
 
-turbopack과 pnpm 관련 문제를 많이 찾아봤지만, 저와 동일한 에러 사례는 발견하지는 못했습니다.
+turbopack과 pnpm 관련 문제를 많이 찾아봤지만, 저와 동일한 문제 사례는 발견하지는 못했습니다.
+
 Next.js GitHub 이슈를 확인하던 중, turbopack과 Tailwind 적용과 관련된 이슈가 몇개 보여 저도 이슈를 작성했습니다.
 
 <br />
@@ -90,8 +93,8 @@ pnpm을 최신 버전(9.x) 또는 8.x의 최신 버전으로 업그레이드한 
 
 <Title>다음 계획</Title>
 
-문제를 확인하기 위한 계획은 우선 정확히 문제가 되는 pnpm 버전을 확인하려고 합니다.
+문제를 확인하기 위한 계획은 우선 문제가 되는 pnpm 버전을 확인하려고 합니다.
 
 <br />
 
-찾은 후 pnpm github에 해당 버전에 업데이트 내역을 확인해보고, turbopack과 어떤 연관성에 의해 문제가 발생하는지 확인해볼 예정입니다.
+찾은 후 pnpm github에 해당 버전에 업데이트 내역을 보고, turbopack과 어떤 연관성에 의해 문제가 발생하는지 확인해볼 예정입니다.

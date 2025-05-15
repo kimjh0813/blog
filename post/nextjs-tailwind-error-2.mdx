@@ -3,7 +3,6 @@ emoji: 🔍
 title: "[Next.js] tailwind 적용 안되는 오류 (2) (with pnpm + turbopack)"
 category: "Next.js"
 updatedAt: "2024-12-01"
-path: "nextjs-tailwind-error-2"
 description: "Next.js tailwind + pnpm 환경에서 turbopack 사용시 tailwind 적용 안되는 문제 확인"
 ---
 
@@ -65,7 +64,7 @@ v8.0.0에서 **lowest-direct**로 변경되었고, v8.6.12까지 유지되다가
 
 <Title>2. Tailwind 문제점 확인</Title>
 
-Create Next App을 실행했을 때의 **package.json devDependencies**는 다음과 같았습니다:
+Next.js 프로젝트를 생성했을 땐 **package.json devDependencies**는 다음과 같았습니다:
 
 ```json
 "devDependencies": {
@@ -250,7 +249,7 @@ normalize 함수에 전달되는 매개변수인 **plugins** 내부의 Tailwind 
 <br />
 
 8.0.2에서는 **2번 조건**에 의해 **Tailwind 플러그인
-객체의 plugins**만이 normalized 에 추가됩니다.
+객체의 plugins**만 normalized 에 추가됩니다.
 
 **normalized.concat(i.plugins)**
 
@@ -347,13 +346,13 @@ v8.0.1과 같은 plugin 구조는 **runOnRoot()** 함수에서 **플러그인 �
 
 하지만, v8.0.2와 같은 plugin 구조는 **runOnRoot()** 함수에서
 **typeof plugin === 'function'** 조건에 부합하여
-**tailwind plugin**이 실행되었습니다.
+**Tailwind의 전체 동작 컨텍스트 함수가** 실행되며 Tailwind가 정상적으로 동작하게 됩니다.
 
 <br />
 
 <Title>📝 마무리</Title>
 
-사실 Next.js의 버전이 업데이트 되며 **package.json devDependencies**가 수정되어, 내가 직접 postcss 버전을 8.0.0 ~ 8.0.1로 수정하지 않는 이상 이 문제가 발생하지 않게 되었습니다.
+사실 Next.js의 버전이 업데이트 되며 **package.json devDependencies**가 수정되어, pnpm의 버전이 8.0.0 ~ 8.6.12 이면서 내가 직접 postcss 버전을 8.0.0 ~ 8.0.1로 수정하지 않는 이상 이 문제가 발생하지 않게 되었습니다.
 
 <br />
 문제를 하나씩 추적하다보니 지금까지 사용했던 시간도 아깝고, 찝찝하게 마무리 할 수
