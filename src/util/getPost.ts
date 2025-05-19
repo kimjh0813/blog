@@ -33,7 +33,7 @@ export const getPosts = async () => {
         title: data.title,
         category: data.category,
         updatedAt: data.updatedAt,
-        path: fileName,
+        path: fileName.split('.')[0],
         description: data.description,
       };
 

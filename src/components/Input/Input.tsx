@@ -54,7 +54,7 @@ export function Input() {
                       setIsVisible(false);
                       setInputValue('');
                     }}>
-                    <div className='px-2 py-1 hover:bg-gray-100 cursor-pointer overflow-x-hidden text-ellipsis'>
+                    <div className='px-2 py-1 hover:bg-gray-100 cursor-pointer line-clamp-2'>
                       {metaData.title}
                     </div>
                   </Link>
