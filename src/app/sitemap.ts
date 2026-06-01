@@ -1,8 +1,17 @@
+import { getPosts } from '@/util/getPost';
+
 import type { MetadataRoute } from 'next';
 
 const BASE_URL = 'https://jonghun.vercel.app';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const { postsData } = await getPosts();
+  const postUrls = postsData.map(({ metaData }) => ({
+    url: `${BASE_URL}/blog/${metaData.path}`,
+    lastModified: new Date(metaData.updatedAt),
+    priority: 0.8,
+  }));
+
   return [
     {
       url: BASE_URL,
@@ -12,22 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${BASE_URL}/posts`,
       lastModified: new Date(),
-      priority: 1.0,
+      priority: 0.9,
     },
-    {
-      url: `${BASE_URL}/blog/react-file-dropzone`,
-      lastModified: new Date(),
-      priority: 1.0,
-    },
-    {
-      url: `${BASE_URL}/blog/nextjs-tailwind-error-1`,
-      lastModified: new Date(),
-      priority: 1.0,
-    },
-    {
-      url: `${BASE_URL}/blog/nextjs-tailwind-error-2`,
-      lastModified: new Date(),
-      priority: 1.0,
-    },
+    ...postUrls,
   ];
 }
